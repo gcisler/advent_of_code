@@ -11,11 +11,11 @@ def parse_input():
 
     return [_.rstrip().split(" ") for _ in all_data]
 
-WINS_DICT = {ROCK: SCISSORS,
+LOSE_DICT = {ROCK: SCISSORS,
              PAPER: ROCK,
              SCISSORS: PAPER}
 
-LOSE_DICT = {v:k for k,v in WINS_DICT.items()}
+WINS_DICT = {v:k for k,v in LOSE_DICT.items()}
 
 SYMBOL_DICT = {"A": ROCK,
             "B": PAPER,
@@ -74,6 +74,7 @@ def follow_new_strategy():
     print("New Total Score: ", total_score)
     return total_score
     # too high 14585
+    # actual answer 14184
 
 follow_strategy()
 follow_new_strategy()
