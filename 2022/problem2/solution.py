@@ -1,8 +1,8 @@
 # /usr/bin/python
 
-ROCK = 100
-PAPER = 200
-SCISSORS = 300
+ROCK = 1
+PAPER = 2
+SCISSORS = 3
 
 
 def parse_input():
@@ -16,10 +16,6 @@ WINS_DICT = {ROCK: SCISSORS,
              SCISSORS: PAPER}
 
 LOSE_DICT = {v:k for k,v in WINS_DICT.items()}
-
-SCORE_DICT = {ROCK: 1,
-              PAPER: 2,
-              SCISSORS: 3}
 
 SYMBOL_DICT = {"A": ROCK,
             "B": PAPER,
@@ -36,7 +32,7 @@ def follow_strategy():
     for opponent, personal in parse_input():
         opponent_choice = SYMBOL_DICT[opponent]
         personal_choice = ASSUMPTION_DICT[personal]
-        round_score = SCORE_DICT[personal_choice]
+        round_score = personal_choice
         if opponent_choice == personal_choice:
             # draw
             round_score += 3
@@ -55,10 +51,10 @@ def follow_strategy():
 
 def follow_new_strategy():
     total_score = 0
-    # ignore the second column of the input
+
     for opponent, decision in parse_input():
         opponent_choice = SYMBOL_DICT[opponent]
-        # round_score = 0
+        round_score = 0
         match decision:
             case "X":
                 # lose
@@ -66,18 +62,18 @@ def follow_new_strategy():
             case "Y":
                 # draw
                 personal_choice = opponent_choice
-                total_score += 3
+                round_score += 3
             case "Z":
                 # win
                 personal_choice = WINS_DICT[opponent_choice]
-                total_score += 6
-        total_score += SCORE_DICT[personal_choice]
+                round_score += 6
+        round_score += personal_choice
 
-        # total_score += round_score
+        total_score += round_score
 
     print("New Total Score: ", total_score)
     return total_score
-    # too high 14585, doesn't work yet
+    # too high 14585
 
 follow_strategy()
 follow_new_strategy()
