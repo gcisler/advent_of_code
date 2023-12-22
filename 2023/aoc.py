@@ -21,7 +21,8 @@ import os
 def day(args):
     try:
         i = importlib.import_module(f"{args['<day_number>']}.solution", package=".")
-    except Exception:
+    except Exception as e:
+        print(e)
         print("No such day available")
         sys.exit(1)
 
